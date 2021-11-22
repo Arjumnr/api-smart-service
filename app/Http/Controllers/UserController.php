@@ -40,20 +40,21 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function tambahUser(Request $request)
     {
         $rules = [
             'nama_lengkap'   => 'required',
-            'username'        => 'required|unique:users',
-            'password'   => 'required',
-            'no_hp'     => 'required',
+            'username'       => 'required|unique:users',
+            'password'       => 'required',
+            'no_hp'          => 'required',
+            
         
         ];
 
         $messages = [
-            'nama_lengkap.required'        => 'Nama Lengkap wajib di isi',
-            'username.required'      => 'Username wajib di isi',
-            'username.unique'      => 'Username Sudah Terdaftar',
+            'nama_lengkap.required'    => 'Nama Lengkap wajib di isi',
+            'username.required'        => 'Username wajib di isi',
+            'username.unique'          => 'Username Sudah Terdaftar',
             'password.required'        => 'Password wajib di isi',
             'no_hp.required'           => 'No hp wajib di isi',
           

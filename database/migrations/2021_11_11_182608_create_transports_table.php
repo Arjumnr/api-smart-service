@@ -15,7 +15,7 @@ class CreateTransportsTable extends Migration
     {
         Schema::create('transports', function (Blueprint $table) {
             $table->id();
-            $table->string('merk_transport');
+            $table->enum('merk_transport', ['Hino 110 LD', 'Hino 130 HD']);
             $table->timestamps();
         });
     }

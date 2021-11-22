@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PilihKendaraanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', [UserController::class, 'store']);
+//Menambah user
+Route::post('/signUp', [UserController::class, 'tambahUser']);
+
+//Menampilkan Semua User
 Route::get('/users', [UserController::class, 'index']);
-Route::post('/login', [LoginController::class, 'login']); 
+
+//Login
+Route::post('/signIn', [LoginController::class, 'login']); 
+
+//Pilih Kendaraan Untuk User Yang Belum Memiliki Kendaraan
+Route::post('/pilihKendaraan', [PilihKendaraanController::class, 'createPilihKendaraan']); 

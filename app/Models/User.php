@@ -22,7 +22,7 @@ class User extends Authenticatable
         'username',
         'password',
         'no_hp',
-        'trasports_id'
+        'trasports_id',
     ];
 
 }

@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
-    public function index(){
-           return 0;
-    }
+   
     public function login(Request $request){
         $rules = [
             'username'   => 'required',
@@ -32,11 +30,29 @@ class LoginController extends Controller
             return response()->json(['status' => false, 'message' => $validator->errors()->first(), 400]);
         }
         $model = $request->all();
-        $data = User::select('username','password')->where('username',$model['username'])->first();
+        $data = User::where('username',$model['username'])->first();
 
-        if (Hash::check($model['password'], $data->password))
-            {
-                return response()->json( [$data] );
-            }
+        if(!$data){
+            return response()->json([
+                'status' => false,
+                'message' => 'Username Salah',
+            ], 400);
+        }
+        else if (Hash::check($model['password'], $data->password)){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Berhasil Login',
+                    'data'    => $data,
+                ], 201);
+        }
+        else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Password Salah',
+                ], 400);
+        }
+        
+        
+        
     }
 }
